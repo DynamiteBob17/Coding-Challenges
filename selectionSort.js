@@ -1,15 +1,15 @@
-function selectionSort(arr) {
-  const array = [...arr];
+function selectionSort(array) {
+  const arr = [...array];
 
-  for (let i = 0, min; i < array.length - 1; ++i) {
+  for (let i = 0, min; i < arr.length - 1; ++i) {
     min = i;
 
-    for (let j = i + 1; j < array.length; ++j) {
-      if (array[j] < array[min]) min = j;
+    for (let j = i + 1; j < arr.length; ++j) {
+      if (arr[j] < arr[min]) min = j;
     }
 
-    [array[i], array[min]] = [array[min], array[i]];
+    [arr[i], arr[min]] = [arr[min], arr[i]];
   }
 
-  return array;
+  return arr;
 }
