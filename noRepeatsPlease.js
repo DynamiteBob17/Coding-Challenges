@@ -18,14 +18,12 @@ function permAlone(str) {
   if (str.match(regex) !== null && str.match(regex)[0] === str) return 0;
 
   const charSeq = str.split('');
-  const perms = [];
+  let validPerms = 0;
 
   // Heap's algorithm for generating all possible permutations
   (function generate(k, arr) {
     if (k === 1) {
-      const perm = arr.join('');
-
-      if (perm.match(regex) === null) perms.push(perm);
+      if (!regex.test(arr.join(''))) ++validPerms;
     } else {
       generate(k - 1, arr);
 
@@ -39,7 +37,7 @@ function permAlone(str) {
     }
   })(charSeq.length, charSeq);
 
-  return perms.length;
+  return validPerms;
 }
 
 console.log(permAlone('abfdefa'));
