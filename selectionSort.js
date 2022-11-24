@@ -1,6 +1,4 @@
-function selectionSort(array) {
-  const arr = [...array];
-
+function selectionSort(arr) {
   for (let i = 0, min; i < arr.length - 1; ++i) {
     min = i;
 
