@@ -1,20 +1,28 @@
+import java.util.HashSet;
+import java.util.Set;
+
 // leetCode 3.
 
 class LongestSubstrLen {
     public int lengthOfLongestSubstring(String s) {
+        Set<Character> sub = new HashSet<>();
         int len = 0;
-        String sub;
+        int left = 0;
 
-        for (int i = 0; i < s.length(); ++i) {
-            sub = "" + s.charAt(i);
+        for (int right = 0; right < s.length(); ++right) {
+            if (!sub.contains(s.charAt(right))) {
+                sub.add(s.charAt(right));
+                
+                if ((right - left + 1) > len) len = right - left + 1;
+            } else {
+                while (s.charAt(left) != s.charAt(right)) {
+                    sub.remove(s.charAt(left));
+                    ++left;
+                }
 
-            for (int j = i + 1; j < s.length(); ++j) {
-                if (sub.indexOf(s.charAt(j)) < 0) {
-                    sub += s.charAt(j);
-                } else break;
+                sub.remove(s.charAt(left++));
+                sub.add(s.charAt(right));
             }
-
-            if (sub.length() > len) len = sub.length();
         }
 
         return len;
